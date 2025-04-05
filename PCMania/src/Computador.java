@@ -1,18 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Computador {
-    private String marca;
-    private float preco;
-    private SistemaOperacional sistemaOperacional;
-    private MemoriaUSB memoriaUSB;
-    private List<HardwareBasico> hardwaresBasicos;
+    public String marca;
+    public float preco;
+    public SistemaOperacional sistemaOperacional;
+    public MemoriaUSB memoriaUSB;
+    public HardwareBasico[] hardwaresBasicos;
+    public int contadorHardwares;
 
     public Computador(String marca, float preco, SistemaOperacional so) {
         this.marca = marca;
         this.preco = preco;
         this.sistemaOperacional = so;
-        this.hardwaresBasicos = new ArrayList<>();
+        this.hardwaresBasicos = new HardwareBasico[100];
+        this.contadorHardwares = 0;
     }
 
     public float getPreco() {
@@ -20,7 +19,12 @@ public class Computador {
     }
 
     public void adicionarHardwareBasico(HardwareBasico hardware) {
-        hardwaresBasicos.add(hardware);
+        if (contadorHardwares < hardwaresBasicos.length) {
+            hardwaresBasicos[contadorHardwares] = hardware;
+            contadorHardwares++;
+        } else {
+            System.out.println("Limite de hardwares básicos atingido.");
+        }
     }
 
     public void adicionarMemoriaUSB(MemoriaUSB musb) {
@@ -31,8 +35,8 @@ public class Computador {
         System.out.println("Marca: " + marca + " - Preço: R$ " + preco);
         System.out.println(sistemaOperacional.exibirinformacoes());
         System.out.println("Hardwares básicos:");
-        for (HardwareBasico hb : hardwaresBasicos) {
-            System.out.println("- " + hb.exibirinformacoes());
+        for (int i = 0; i < contadorHardwares; i++) {
+            System.out.println("- " + hardwaresBasicos[i].exibirinformacoes());
         }
         if (memoriaUSB != null) {
             System.out.println(memoriaUSB);
