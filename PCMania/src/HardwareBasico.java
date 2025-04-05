@@ -1,6 +1,6 @@
 public class HardwareBasico {
-    private String nome;
-    private int capacidade;  // Em MHz ou GB
+    public String nome;
+    public int capacidade;
 
     public HardwareBasico(String nome, int capacidade) {
         this.nome = nome;
