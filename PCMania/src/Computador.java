@@ -6,12 +6,13 @@ public class Computador {
     public HardwareBasico[] hardwaresBasicos;
     public int contadorHardwares;
 
-    public Computador(String marca, float preco, SistemaOperacional so) {
+    public Computador(String marca, float preco, SistemaOperacional so, MemoriaUSB musb) {
         this.marca = marca;
         this.preco = preco;
         this.sistemaOperacional = so;
         this.hardwaresBasicos = new HardwareBasico[100];
         this.contadorHardwares = 0;
+        this.memoriaUSB = musb;
     }
 
     public float getPreco() {
@@ -27,21 +28,13 @@ public class Computador {
         }
     }
 
-    public void adicionarMemoriaUSB(MemoriaUSB musb) {
-        this.memoriaUSB = musb;
-    }
-
     public void mostraPCConfig() {
         System.out.println("Marca: " + marca + " - Preço: R$ " + preco);
         System.out.println(sistemaOperacional.exibirinformacoes());
+        System.out.println(memoriaUSB.exibirinformacoes());
         System.out.println("Hardwares básicos:");
         for (int i = 0; i < contadorHardwares; i++) {
             System.out.println("- " + hardwaresBasicos[i].exibirinformacoes());
-        }
-        if (memoriaUSB != null) {
-            System.out.println(memoriaUSB);
-        } else {
-            System.out.println("Sem memória USB.");
         }
         System.out.println();
     }
