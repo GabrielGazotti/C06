@@ -1,13 +1,12 @@
 public class SistemaOperacional {
-    public String nome;
-    public int tipo;
+    private String nome;
+    private int tipo;
 
     public SistemaOperacional(String nome, int tipo) {
         this.nome = nome;
         this.tipo = tipo;
     }
 
-    public String exibirinformacoes() {
-        return "Sistema Operacional: " + nome + " (" + tipo + " bits)";
-    }
+    public String getNome() { return nome; }
+    public int getTipo() { return tipo; }
 }

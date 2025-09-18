@@ -1,41 +1,39 @@
 public class Computador {
-    public String marca;
-    public float preco;
-    public SistemaOperacional sistemaOperacional;
-    public MemoriaUSB memoriaUSB;
-    public HardwareBasico[] hardwaresBasicos;
-    public int contadorHardwares;
+    private String marca;
+    private float preco;
+    private HardwareBasico processador;
+    private HardwareBasico memoria;
+    private HardwareBasico hd;
+    private SistemaOperacional sistemaOperacional;
+    private MemoriaUSB memoriaUSB;
 
-    public Computador(String marca, float preco, SistemaOperacional so, MemoriaUSB musb) {
+    public Computador(String marca, float preco, HardwareBasico processador, HardwareBasico memoria, HardwareBasico hd, SistemaOperacional so) {
         this.marca = marca;
         this.preco = preco;
+        this.processador = processador;
+        this.memoria = memoria;
+        this.hd = hd;
         this.sistemaOperacional = so;
-        this.hardwaresBasicos = new HardwareBasico[100];
-        this.contadorHardwares = 0;
+        this.memoriaUSB =  memoriaUSB;
+    }
+
+    public void addMemoriaUSB(MemoriaUSB musb){
         this.memoriaUSB = musb;
     }
 
-    public float getPreco() {
-        return preco;
-    }
+    public float getPreco() { return preco;}
 
-    public void adicionarHardwareBasico(HardwareBasico hardware) {
-        if (contadorHardwares < hardwaresBasicos.length) {
-            hardwaresBasicos[contadorHardwares] = hardware;
-            contadorHardwares++;
+    public void mostraPCConfigs() {
+        System.out.println("\nMarca: " + marca);
+        System.out.println("Preço: R$ " + preco);
+        System.out.println("Processador: " + processador.getNome() +  " (" + processador.getCapacidade() + " Mhz)");
+        System.out.println("Memoria RAM: " + memoria.getNome() + memoria.getCapacidade() + " Gb");
+        System.out.println("HD " + hd.getCapacidade() + " Gb");
+        System.out.println("Sistema Operacional: " + sistemaOperacional.getNome() + " (" + sistemaOperacional.getTipo() + " bits)");
+        if (memoriaUSB != null) {
+            System.out.println("Acompanha: " + memoriaUSB.getNome() + " de " + memoriaUSB.getCapacidade() + " Gb");
         } else {
-            System.out.println("Limite de hardwares básicos atingido.");
+            System.out.println("Não acompanha nenhuma memória USB");
         }
-    }
-
-    public void mostraPCConfig() {
-        System.out.println("Marca: " + marca + " - Preço: R$ " + preco);
-        System.out.println(sistemaOperacional.exibirinformacoes());
-        System.out.println(memoriaUSB.exibirinformacoes());
-        System.out.println("Hardwares básicos:");
-        for (int i = 0; i < contadorHardwares; i++) {
-            System.out.println("- " + hardwaresBasicos[i].exibirinformacoes());
-        }
-        System.out.println();
     }
 }
