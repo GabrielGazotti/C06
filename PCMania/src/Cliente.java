@@ -10,7 +10,6 @@ public class Cliente {
     }
 
     public String getNome() {return nome;}
-    public String getCPF() {return cpf;}
 
     public float calculaTotalCompra() {
         float total = 0;
